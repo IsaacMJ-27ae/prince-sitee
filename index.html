@@ -3,27 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prince</title>
+  <title>Prince | Live</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: #0d0d0d;
+      gap: 20px;
+      padding: 16px;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
       color: #fff;
       font-family: Arial, sans-serif;
-    }
-    h1 {
-      font-size: 3rem;
-      font-weight: 900;
       text-align: center;
-      padding: 0 16px;
     }
+    h1 { font-size: clamp(2rem, 8vw, 4rem); font-weight: 900; margin: 0; }
+    p  { color: #a1a1aa; margin: 0; font-size: 1.1rem; }
+    .clock { font-size: 1.5rem; font-weight: 700; color: #22d3ee; }
+    button {
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      background: #22d3ee;
+      color: #0d0d0d;
+      cursor: pointer;
+    }
+    button:active { transform: scale(0.96); }
+    footer { position: fixed; bottom: 16px; font-size: 0.8rem; color: #52525b; }
   </style>
 </head>
 <body>
   <h1>Prince is live 🚀</h1>
+  <p>My first website — built, pushed to GitHub, deployed to the internet.</p>
+
+  <div class="clock" id="clock"></div>
+
+  <button id="btn">Tap me</button>
+  <p id="count">Tapped 0 times</p>
+
+  <footer>Hosted on Vercel / GitHub Pages</footer>
+
+  <script>
+    // Live clock — shows JavaScript is running
+    function tick() {
+      document.getElementById("clock").textContent =
+        new Date().toLocaleTimeString();
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // Button counter — shows the page reacts to the user
+    let taps = 0;
+    document.getElementById("btn").addEventListener("click", function () {
+      taps++;
+      document.getElementById("count").textContent = "Tapped " + taps + " times";
+    });
+  </script>
 </body>
 </html>
